@@ -1,0 +1,49 @@
+table,column,data_type,nullable,pk,fk,description,example,notes
+rw_source_metadata,id,SERIAL (INTEGER),Nee,Ja,,Auto-increment primaire sleutel. Wordt als source_id gebruikt in de andere tabellen.,1,
+rw_source_metadata,source_code,VARCHAR(50),Nee,Nee,,Unieke code voor de databron. Wordt gebruikt als sleutel in laadscripts en cross-source queries.,RANDSTAD_WM_2026,UNIQUE constraint aanwezig.
+rw_source_metadata,source_name,VARCHAR(100),Nee,Nee,,Leesbare naam van de databron.,Randstad Workmonitor,
+rw_source_metadata,edition,VARCHAR(20),Nee,Nee,,Editie of versie van het rapport.,2026,
+rw_source_metadata,survey_year,INTEGER,Nee,Nee,,Het jaar waarop het onderzoek betrekking heeft.,2026,
+rw_source_metadata,n_talent,INTEGER,Ja,Nee,,Aantal respondenten aan de talent-zijde van het onderzoek.,27000,Benaderd getal op basis van rapportage (N=26.000+).
+rw_source_metadata,n_employers,INTEGER,Ja,Nee,,Aantal respondenten aan de werkgever-zijde van het onderzoek.,1225,
+rw_source_metadata,n_markets,INTEGER,Ja,Nee,,Aantal landen/markten waarvoor data beschikbaar is.,34,35 markten in het rapport; 34 geëxtraheerd (1 markt had onvoldoende data).
+rw_source_metadata,publication_url,TEXT,Ja,Nee,,URL naar de publieke publicatiepagina van het rapport.,https://www.randstad.com/workmonitor/,
+rw_source_metadata,notes,TEXT,Ja,Nee,,"Vrij tekstveld voor ETL-opmerkingen, extractiemethode en bekende beperkingen.",Extracted via extract_randstad.py. 'not in RM' = indicator not reported for this country.,
+rw_source_metadata,loaded_at,TIMESTAMPTZ,Nee,Nee,,Tijdstip waarop de rij voor het laatst is geladen of bijgewerkt.,2026-06-11 14:32:00+02,Automatisch ingevuld door NOW() bij elke laadrun.
+rw_market_indicators,id,SERIAL (INTEGER),Nee,Ja,,Auto-increment primaire sleutel.,42,
+rw_market_indicators,source_id,INTEGER,Nee,Nee,rw_source_metadata.id,Verwijzing naar de brondefinitie in rw_source_metadata.,1,
+rw_market_indicators,source_code,VARCHAR(50),Ja,Nee,,Denormalisatie van source_code voor eenvoudiger filteren zonder JOIN.,RANDSTAD_WM_2026,
+rw_market_indicators,country_name,VARCHAR(100),Nee,Nee,,Volledige landnaam zoals vermeld in het rapport.,Netherlands,
+rw_market_indicators,country_code,CHAR(2),Nee,Nee,,ISO 3166-1 alpha-2 landcode.,NL,Geïndexeerd voor snelle landfiltering.
+rw_market_indicators,indicator_code,VARCHAR(100),Nee,Nee,,Unieke machineleesbare code voor de indicator. Prefix geeft respondenttype aan: talent_ of employer_.,talent_pay_attracts,30 unieke indicator_codes in de huidige dataset. Geïndexeerd.
+rw_market_indicators,indicator_label,TEXT,Ja,Nee,,Leesbare beschrijving van wat de indicator meet.,Talent who say pay is the top factor when looking for a new job,
+rw_market_indicators,respondent_type,VARCHAR(20),Nee,Nee,,Geeft aan of de waarde afkomstig is van talent- of werkgeversrespondenten.,talent,"Toegestane waarden: 'talent', 'employer'."
+rw_market_indicators,value_pct,"DECIMAL(5,2)",Ja,Nee,,"Percentage respondenten dat de indicator bevestigt, voor dit specifieke land.",76.00,NULL indien extraction_note = 'not in RM' (indicator niet gerapporteerd voor dit land).
+rw_market_indicators,global_avg_pct,"DECIMAL(5,2)",Ja,Nee,,Wereldgemiddelde voor deze indicator zoals gerapporteerd in het rapport.,81.00,Constant per indicator_code — zelfde waarde voor alle landen.
+rw_market_indicators,deviation_pp,"DECIMAL(5,2) GENERATED",Ja,Nee,,Afwijking van het wereldgemiddelde in procentpunten (value_pct - global_avg_pct). Automatisch berekend door Postgres.,-5.00,GENERATED ALWAYS AS (value_pct - global_avg_pct) STORED. Nooit handmatig invullen.
+rw_market_indicators,page_number,INTEGER,Ja,Nee,,Paginanummer in het bronrapport waar de waarde is gevonden. Dient als traceerbaarheidsbewijs.,47,
+rw_market_indicators,extraction_note,TEXT,Ja,Nee,,Toelichting op de extractie. 'not in RM' betekent dat de indicator niet gerapporteerd is voor dit land.,not in RM — indicator not reported for this country in the PDF,Andere waarden zijn mogelijk voor speciale gevallen zoals alternatieve PDF-opmaak.
+rw_market_indicators,loaded_at,TIMESTAMPTZ,Ja,Nee,,Tijdstip waarop de rij is geladen.,2026-06-11 14:32:00+02,Automatisch ingevuld door het laadscript.
+rw_global_indicators,id,SERIAL (INTEGER),Nee,Ja,,Auto-increment primaire sleutel.,1,
+rw_global_indicators,source_id,INTEGER,Nee,Nee,rw_source_metadata.id,Verwijzing naar de brondefinitie in rw_source_metadata.,1,
+rw_global_indicators,theme,VARCHAR(50),Nee,Nee,,"Het thema waaronder de indicator valt, overeenkomend met de drie hoofdthema's van het rapport.",me_and_the_world,"Toegestane waarden: 'me_and_the_world', 'me_and_my_team', 'me_self_defined_success'."
+rw_global_indicators,indicator_code,VARCHAR(100),Nee,Nee,,Unieke machineleesbare code voor de globale indicator. Prefix 'global_' onderscheidt van marktindicatoren.,global_employer_invested_ai,52 unieke codes in de huidige dataset.
+rw_global_indicators,indicator_label,TEXT,Nee,Nee,,Leesbare beschrijving van wat de indicator meet.,Employers who have invested in AI in the last 12 months,
+rw_global_indicators,respondent_type,VARCHAR(20),Nee,Nee,,Geeft aan of de waarde afkomstig is van talent- of werkgeversrespondenten.,employer,"Toegestane waarden: 'talent', 'employer'."
+rw_global_indicators,value_pct,"DECIMAL(5,2)",Ja,Nee,,Wereldwijd percentage respondenten dat de indicator bevestigt.,63.00,
+rw_global_indicators,year_prev_pct,"DECIMAL(5,2)",Ja,Nee,,"Waarde van dezelfde indicator in het vorige rapport (2025), indien vermeld.",64.00,NULL voor indicatoren zonder jaar-op-jaar vergelijking in het rapport.
+rw_global_indicators,change_pp,"DECIMAL(5,2) GENERATED",Ja,Nee,,Verandering ten opzichte van het vorige jaar in procentpunten (value_pct - year_prev_pct). Automatisch berekend.,8.00,GENERATED ALWAYS AS (value_pct - year_prev_pct) STORED. Nooit handmatig invullen.
+rw_global_indicators,notes,TEXT,Ja,Nee,,Bronvermelding: exacte pagina en citaat uit het rapport waaruit de waarde is afgeleid.,"p.19: '72% of talent say they have a strong relationship with their manager, up 8pp from 2025'",Dient als audit trail voor elke waarde.
+rw_generation_indicators,id,SERIAL (INTEGER),Nee,Ja,,Auto-increment primaire sleutel.,1,
+rw_generation_indicators,source_id,INTEGER,Nee,Nee,rw_source_metadata.id,Verwijzing naar de brondefinitie in rw_source_metadata.,1,
+rw_generation_indicators,generation,VARCHAR(20),Nee,Nee,,Generatiegroep van de respondenten.,Gen Z,"Verwachte waarden: 'Gen Z', 'Millennials', 'Gen X', 'Baby Boomers'."
+rw_generation_indicators,age_range,VARCHAR(20),Ja,Nee,,Leeftijdsbereik van de generatiegroep zoals gehanteerd in het rapport.,18-28 years,
+rw_generation_indicators,indicator_code,VARCHAR(100),Nee,Nee,,Indicator waarvoor de generatie-uitsplitsing beschikbaar is.,talent_rely_different_generations,Tabel is nog leeg — data staat in grafieken in het PDF en vereist handmatige invoer of OCR.
+rw_generation_indicators,indicator_label,TEXT,Ja,Nee,,Leesbare beschrijving van de indicator.,Talent who rely on colleagues from different generations to broaden perspectives,
+rw_generation_indicators,value_pct,"DECIMAL(5,2)",Ja,Nee,,Percentage respondenten binnen de generatiegroep dat de indicator bevestigt.,69.00,
+rw_sector_indicators,id,SERIAL (INTEGER),Nee,Ja,,Auto-increment primaire sleutel.,1,
+rw_sector_indicators,source_id,INTEGER,Nee,Nee,rw_source_metadata.id,Verwijzing naar de brondefinitie in rw_source_metadata.,1,
+rw_sector_indicators,sector,VARCHAR(100),Nee,Nee,,Naam van de sector waarvoor de indicator gerapporteerd is.,IT services & telecommunications,"7 sectoren beschikbaar in het rapport (p.19): IT, Financial Services, Engineering, Transport & Logistics, Manufacturing, Healthcare, Defense."
+rw_sector_indicators,indicator_code,VARCHAR(100),Nee,Nee,,Indicator waarvoor de sectoruitsplitsing beschikbaar is.,talent_strong_manager_relationship,"Tabel is nog leeg — sectordata is beperkt (1 pagina, grafiek) en vereist handmatige invoer."
+rw_sector_indicators,indicator_label,TEXT,Ja,Nee,,Leesbare beschrijving van de indicator.,Talent who say they have a strong relationship with their manager,
+rw_sector_indicators,value_pct,"DECIMAL(5,2)",Ja,Nee,,Percentage respondenten binnen de sector dat de indicator bevestigt.,79.00,
