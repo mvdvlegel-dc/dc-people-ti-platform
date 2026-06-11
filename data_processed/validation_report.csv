@@ -1,0 +1,105 @@
+check_nr,check_naam,status,resultaat,toelichting,country,indicator,value_pct,global_avg_pct,verschil_pp
+1,Structuur — kolommen,OK,Alle 9 verplichte kolommen aanwezig,"Kolommen: country_name, country_code, indicator_code, indicator_label, respondent_type, value_pct, global_avg_pct, page_number, extraction_note",,,,,
+1,Structuur — recordaantal,OK,1020 records,Verwacht: 1020,,,,,
+1,Structuur — datatypes,OK,value_pct en global_avg_pct zijn float,,,,,,
+2,Volledigheid — landen,OK,Alle 34 landen aanwezig,"Landen: ['AT', 'AU', 'BE', 'BR', 'CA', 'CH', 'CL', 'CN', 'CZ', 'DE', 'DK', 'ES', 'FR', 'GB', 'GR', 'HK', 'HU', 'IN', 'IT', 'JP', 'LU', 'MX', 'MY', 'NL', 'NO', 'NZ', 'PL', 'PT', 'RO', 'SE', 'SG', 'TR', 'US', 'UY']",,,,,
+2,Volledigheid — indicatoren,OK,Alle 30 indicatoren aanwezig,,,,,,
+2,Volledigheid — employer_ai_high_proportion_tasks,OK,34/34 gevuld,Volledig gevuld,,employer_ai_high_proportion_tasks,,,
+2,Volledigheid — employer_ai_improves_productivity,OK,34/34 gevuld,Volledig gevuld,,employer_ai_improves_productivity,,,
+2,Volledigheid — employer_autonomy_engagement,OK,34/34 gevuld,Volledig gevuld,,employer_autonomy_engagement,,,
+2,Volledigheid — employer_confident_growth,OK,34/34 gevuld,Volledig gevuld,,employer_confident_growth,,,
+2,Volledigheid — employer_generational_diversity_productivity,OK,34/34 gevuld,Volledig gevuld,,employer_generational_diversity_productivity,,,
+2,Volledigheid — employer_remote_collaboration_challenging,OK,34/34 gevuld,Volledig gevuld,,employer_remote_collaboration_challenging,,,
+2,Volledigheid — employer_want_improve_collaboration,OK,33/34 gevuld,1 not in RM — inhoudelijk verklaarbaar (zie KNOWN_NOT_IN_RM),,employer_want_improve_collaboration,,,
+2,Volledigheid — talent_ai_benefits_company_more,OK,34/34 gevuld,Volledig gevuld,,talent_ai_benefits_company_more,,,
+2,Volledigheid — talent_ai_high_proportion_tasks,OK,6/34 gevuld,28 not in RM — inhoudelijk verklaarbaar (zie KNOWN_NOT_IN_RM),,talent_ai_high_proportion_tasks,,,
+2,Volledigheid — talent_ai_improves_productivity,OK,34/34 gevuld,Volledig gevuld,,talent_ai_improves_productivity,,,
+2,Volledigheid — talent_confident_use_technology,OK,34/34 gevuld,Volledig gevuld,,talent_confident_use_technology,,,
+2,Volledigheid — talent_job_security_retention,OK,34/34 gevuld,Volledig gevuld,,talent_job_security_retention,,,
+2,Volledigheid — talent_left_lack_independence,OK,34/34 gevuld,Volledig gevuld,,talent_left_lack_independence,,,
+2,Volledigheid — talent_manager_best_interests,OK,34/34 gevuld,Volledig gevuld,,talent_manager_best_interests,,,
+2,Volledigheid — talent_multigenerational_more_productive,OK,34/34 gevuld,Volledig gevuld,,talent_multigenerational_more_productive,,,
+2,Volledigheid — talent_no_hours_flexibility,OK,34/34 gevuld,Volledig gevuld,,talent_no_hours_flexibility,,,
+2,Volledigheid — talent_no_location_flexibility,OK,34/34 gevuld,Volledig gevuld,,talent_no_location_flexibility,,,
+2,Volledigheid — talent_optimism,OK,34/34 gevuld,Volledig gevuld,,talent_optimism,,,
+2,Volledigheid — talent_pay_attracts,OK,31/34 gevuld,3 not in RM — inhoudelijk verklaarbaar (zie KNOWN_NOT_IN_RM),,talent_pay_attracts,,,
+2,Volledigheid — talent_pay_retention_reason,OK,34/34 gevuld,Volledig gevuld,,talent_pay_retention_reason,,,
+2,Volledigheid — talent_quit_personal_life,OK,34/34 gevuld,Volledig gevuld,,talent_quit_personal_life,,,
+2,Volledigheid — talent_rely_different_generations,OK,34/34 gevuld,Volledig gevuld,,talent_rely_different_generations,,,
+2,Volledigheid — talent_second_job,OK,31/34 gevuld,3 not in RM — inhoudelijk verklaarbaar (zie KNOWN_NOT_IN_RM),,talent_second_job,,,
+2,Volledigheid — talent_strong_manager_relationship,OK,34/34 gevuld,Volledig gevuld,,talent_strong_manager_relationship,,,
+2,Volledigheid — talent_trust_colleagues,OK,34/34 gevuld,Volledig gevuld,,talent_trust_colleagues,,,
+2,Volledigheid — talent_trust_leadership,OK,34/34 gevuld,Volledig gevuld,,talent_trust_leadership,,,
+2,Volledigheid — talent_want_linear_career,OK,34/34 gevuld,Volledig gevuld,,talent_want_linear_career,,,
+2,Volledigheid — talent_want_portfolio_career,OK,34/34 gevuld,Volledig gevuld,,talent_want_portfolio_career,,,
+2,Volledigheid — talent_wlb_attracts,OK,1/34 gevuld,33 not in RM — inhoudelijk verklaarbaar (zie KNOWN_NOT_IN_RM),,talent_wlb_attracts,,,
+2,Volledigheid — talent_wlb_main_retention_reason,OK,31/34 gevuld,3 not in RM — inhoudelijk verklaarbaar (zie KNOWN_NOT_IN_RM),,talent_wlb_main_retention_reason,,,
+2,Volledigheid — samenvatting,OK,Dekking: 93.0% (949/1020),Not in RM: 71 | Echte nulls: 0,,,,,
+3,Waardebereik — value_pct,OK,Alle 949 gevulde waarden liggen tussen 0 en 100,,,,,,
+3,Waardebereik — global_avg_pct,OK,Alle global_avg_pct waarden liggen tussen 0 en 100,,,,,,
+4,Duplicaten,OK,Geen duplicaten — alle 1020 land-indicator combinaties uniek,,,,,,
+5,Consistentie — talent_pay_attracts vs talent_pay_retention_reason,OK,Geen schendingen,Pay attracts (attractie) zou hoger moeten zijn dan pay retention (retentie),,,,,
+5,Consistentie — talent_wlb_main_retention_reason vs talent_pay_retention_reason,WAARSCHUWING,HU: talent_wlb_main_retention_reason=31% ≤ talent_pay_retention_reason=41%,"WLB is primaire retentiereden, zou hoger moeten zijn dan pay retention",HU,talent_wlb_main_retention_reason vs talent_pay_retention_reason,31.0,41.0,
+6,Uitschieters,WAARSCHUWING,AT: ↓51pp afwijking,Controleer handmatig in het PDF,AT,employer_want_improve_collaboration,39.0,90.0,↓51pp
+6,Uitschieters,WAARSCHUWING,AU: ↓47pp afwijking,Controleer handmatig in het PDF,AU,employer_want_improve_collaboration,43.0,90.0,↓47pp
+6,Uitschieters,WAARSCHUWING,BE: ↓44pp afwijking,Controleer handmatig in het PDF,BE,employer_ai_high_proportion_tasks,24.0,68.0,↓44pp
+6,Uitschieters,WAARSCHUWING,SG: ↓44pp afwijking,Controleer handmatig in het PDF,SG,employer_want_improve_collaboration,46.0,90.0,↓44pp
+6,Uitschieters,WAARSCHUWING,LU: ↑43pp afwijking,Controleer handmatig in het PDF,LU,talent_second_job,83.0,40.0,↑43pp
+6,Uitschieters,WAARSCHUWING,CH: ↑43pp afwijking,Controleer handmatig in het PDF,CH,talent_second_job,83.0,40.0,↑43pp
+6,Uitschieters,WAARSCHUWING,NZ: ↑42pp afwijking,Controleer handmatig in het PDF,NZ,talent_second_job,82.0,40.0,↑42pp
+6,Uitschieters,WAARSCHUWING,DK: ↑39pp afwijking,Controleer handmatig in het PDF,DK,talent_second_job,79.0,40.0,↑39pp
+6,Uitschieters,WAARSCHUWING,MY: ↑39pp afwijking,Controleer handmatig in het PDF,MY,talent_second_job,79.0,40.0,↑39pp
+6,Uitschieters,WAARSCHUWING,PL: ↓38pp afwijking,Controleer handmatig in het PDF,PL,employer_ai_high_proportion_tasks,30.0,68.0,↓38pp
+6,Uitschieters,WAARSCHUWING,AU: ↑38pp afwijking,Controleer handmatig in het PDF,AU,talent_second_job,78.0,40.0,↑38pp
+6,Uitschieters,WAARSCHUWING,IN: ↑38pp afwijking,Controleer handmatig in het PDF,IN,talent_ai_benefits_company_more,85.0,47.0,↑38pp
+6,Uitschieters,WAARSCHUWING,BR: ↑38pp afwijking,Controleer handmatig in het PDF,BR,talent_second_job,78.0,40.0,↑38pp
+6,Uitschieters,WAARSCHUWING,DE: ↑38pp afwijking,Controleer handmatig in het PDF,DE,talent_second_job,78.0,40.0,↑38pp
+6,Uitschieters,WAARSCHUWING,LU: ↑37pp afwijking,Controleer handmatig in het PDF,LU,talent_ai_benefits_company_more,84.0,47.0,↑37pp
+6,Uitschieters,WAARSCHUWING,BR: ↑37pp afwijking,Controleer handmatig in het PDF,BR,talent_ai_benefits_company_more,84.0,47.0,↑37pp
+6,Uitschieters,WAARSCHUWING,US: ↑37pp afwijking,Controleer handmatig in het PDF,US,talent_second_job,77.0,40.0,↑37pp
+6,Uitschieters,WAARSCHUWING,NO: ↑36pp afwijking,Controleer handmatig in het PDF,NO,talent_second_job,76.0,40.0,↑36pp
+6,Uitschieters,WAARSCHUWING,AT: ↑36pp afwijking,Controleer handmatig in het PDF,AT,talent_second_job,76.0,40.0,↑36pp
+6,Uitschieters,WAARSCHUWING,GB: ↑36pp afwijking,Controleer handmatig in het PDF,GB,talent_second_job,76.0,40.0,↑36pp
+6,Uitschieters,WAARSCHUWING,UY: ↓34pp afwijking,Controleer handmatig in het PDF,UY,employer_ai_improves_productivity,20.0,54.0,↓34pp
+6,Uitschieters,WAARSCHUWING,CH: ↑34pp afwijking,Controleer handmatig in het PDF,CH,talent_ai_benefits_company_more,81.0,47.0,↑34pp
+6,Uitschieters,WAARSCHUWING,SG: ↑34pp afwijking,Controleer handmatig in het PDF,SG,talent_second_job,74.0,40.0,↑34pp
+6,Uitschieters,WAARSCHUWING,CN: ↑34pp afwijking,Controleer handmatig in het PDF,CN,talent_second_job,74.0,40.0,↑34pp
+6,Uitschieters,WAARSCHUWING,IT: ↑34pp afwijking,Controleer handmatig in het PDF,IT,talent_second_job,74.0,40.0,↑34pp
+6,Uitschieters,WAARSCHUWING,MX: ↑33pp afwijking,Controleer handmatig in het PDF,MX,talent_ai_benefits_company_more,80.0,47.0,↑33pp
+6,Uitschieters,WAARSCHUWING,SG: ↑32pp afwijking,Controleer handmatig in het PDF,SG,talent_ai_benefits_company_more,79.0,47.0,↑32pp
+6,Uitschieters,WAARSCHUWING,MX: ↑32pp afwijking,Controleer handmatig in het PDF,MX,talent_second_job,72.0,40.0,↑32pp
+6,Uitschieters,WAARSCHUWING,NL: ↑32pp afwijking,Controleer handmatig in het PDF,NL,talent_ai_benefits_company_more,79.0,47.0,↑32pp
+6,Uitschieters,WAARSCHUWING,CN: ↓32pp afwijking,Controleer handmatig in het PDF,CN,employer_autonomy_engagement,40.0,72.0,↓32pp
+6,Uitschieters,WAARSCHUWING,CL: ↑32pp afwijking,Controleer handmatig in het PDF,CL,talent_ai_benefits_company_more,79.0,47.0,↑32pp
+6,Uitschieters,WAARSCHUWING,TR: ↑32pp afwijking,Controleer handmatig in het PDF,TR,talent_second_job,72.0,40.0,↑32pp
+6,Uitschieters,WAARSCHUWING,PT: ↑31pp afwijking,Controleer handmatig in het PDF,PT,talent_ai_benefits_company_more,78.0,47.0,↑31pp
+6,Uitschieters,WAARSCHUWING,ES: ↑31pp afwijking,Controleer handmatig in het PDF,ES,talent_ai_benefits_company_more,78.0,47.0,↑31pp
+6,Uitschieters,WAARSCHUWING,NZ: ↑31pp afwijking,Controleer handmatig in het PDF,NZ,talent_ai_benefits_company_more,78.0,47.0,↑31pp
+6,Uitschieters,WAARSCHUWING,CN: ↑31pp afwijking,Controleer handmatig in het PDF,CN,talent_ai_benefits_company_more,78.0,47.0,↑31pp
+6,Uitschieters,WAARSCHUWING,NO: ↑30pp afwijking,Controleer handmatig in het PDF,NO,talent_ai_benefits_company_more,77.0,47.0,↑30pp
+6,Uitschieters,WAARSCHUWING,PL: ↑30pp afwijking,Controleer handmatig in het PDF,PL,talent_ai_benefits_company_more,77.0,47.0,↑30pp
+6,Uitschieters,WAARSCHUWING,MX: ↓30pp afwijking,Controleer handmatig in het PDF,MX,employer_ai_high_proportion_tasks,38.0,68.0,↓30pp
+6,Uitschieters,WAARSCHUWING,UY: ↓30pp afwijking,Controleer handmatig in het PDF,UY,employer_generational_diversity_productivity,65.0,95.0,↓30pp
+6,Uitschieters,WAARSCHUWING,HU: ↑30pp afwijking,Controleer handmatig in het PDF,HU,talent_second_job,70.0,40.0,↑30pp
+6,Uitschieters,WAARSCHUWING,JP: ↓30pp afwijking,Controleer handmatig in het PDF,JP,talent_strong_manager_relationship,42.0,72.0,↓30pp
+6,Uitschieters,WAARSCHUWING,RO: ↑30pp afwijking,Controleer handmatig in het PDF,RO,talent_ai_benefits_company_more,77.0,47.0,↑30pp
+6,Uitschieters,WAARSCHUWING,JP: ↓30pp afwijking,Controleer handmatig in het PDF,JP,talent_optimism,21.0,51.0,↓30pp
+6,Uitschieters,WAARSCHUWING,TR: ↑29pp afwijking,Controleer handmatig in het PDF,TR,talent_ai_benefits_company_more,76.0,47.0,↑29pp
+6,Uitschieters,WAARSCHUWING,PL: ↑29pp afwijking,Controleer handmatig in het PDF,PL,talent_second_job,69.0,40.0,↑29pp
+6,Uitschieters,WAARSCHUWING,HK: ↑29pp afwijking,Controleer handmatig in het PDF,HK,talent_second_job,69.0,40.0,↑29pp
+6,Uitschieters,WAARSCHUWING,RO: ↑28pp afwijking,Controleer handmatig in het PDF,RO,talent_second_job,68.0,40.0,↑28pp
+6,Uitschieters,WAARSCHUWING,JP: ↓28pp afwijking,Controleer handmatig in het PDF,JP,talent_confident_use_technology,41.0,69.0,↓28pp
+6,Uitschieters,WAARSCHUWING,AU: ↑28pp afwijking,Controleer handmatig in het PDF,AU,talent_ai_benefits_company_more,75.0,47.0,↑28pp
+6,Uitschieters,WAARSCHUWING,MY: ↑28pp afwijking,Controleer handmatig in het PDF,MY,talent_ai_benefits_company_more,75.0,47.0,↑28pp
+6,Uitschieters,WAARSCHUWING,NO: ↓28pp afwijking,Controleer handmatig in het PDF,NO,employer_ai_high_proportion_tasks,40.0,68.0,↓28pp
+6,Uitschieters,WAARSCHUWING,BE: ↓27pp afwijking,Controleer handmatig in het PDF,BE,employer_confident_growth,68.0,95.0,↓27pp
+6,Uitschieters,WAARSCHUWING,FR: ↑27pp afwijking,Controleer handmatig in het PDF,FR,talent_second_job,67.0,40.0,↑27pp
+6,Uitschieters,WAARSCHUWING,IN: ↑27pp afwijking,Controleer handmatig in het PDF,IN,talent_ai_improves_productivity,89.0,62.0,↑27pp
+6,Uitschieters,WAARSCHUWING,NL: ↑27pp afwijking,Controleer handmatig in het PDF,NL,talent_second_job,67.0,40.0,↑27pp
+6,Uitschieters,WAARSCHUWING,IN: ↑26pp afwijking,Controleer handmatig in het PDF,IN,talent_want_linear_career,67.0,41.0,↑26pp
+6,Uitschieters,WAARSCHUWING,JP: ↓26pp afwijking,Controleer handmatig in het PDF,JP,talent_manager_best_interests,45.0,71.0,↓26pp
+6,Uitschieters,WAARSCHUWING,CA: ↑26pp afwijking,Controleer handmatig in het PDF,CA,talent_ai_benefits_company_more,73.0,47.0,↑26pp
+6,Uitschieters,WAARSCHUWING,BE: ↑26pp afwijking,Controleer handmatig in het PDF,BE,talent_ai_benefits_company_more,73.0,47.0,↑26pp
+6,Uitschieters,WAARSCHUWING,BE: ↑26pp afwijking,Controleer handmatig in het PDF,BE,talent_second_job,66.0,40.0,↑26pp
+6,Uitschieters,WAARSCHUWING,DK: ↑26pp afwijking,Controleer handmatig in het PDF,DK,talent_ai_benefits_company_more,73.0,47.0,↑26pp
+6,Uitschieters,WAARSCHUWING,UY: ↑26pp afwijking,Controleer handmatig in het PDF,UY,talent_ai_benefits_company_more,73.0,47.0,↑26pp
