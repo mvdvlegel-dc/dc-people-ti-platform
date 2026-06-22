@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# DC People — project specifiek
+data_raw/
+generate_data_dictionary.py
+etl/diagnose_missing.py
+etl/explore_randstad.py
+etl/explore_extra_tables.py
